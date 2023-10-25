@@ -1,6 +1,5 @@
-# sms_user_consent
-
-Request user's phone number (supports dual sim) and/or consent to read SMS without adding any permissions, using Android's [SMS User Consent API](https://developers.google.com/identity/sms-retriever/user-consent/overview)
+# sms_consent_for_otp_autofill
+Flutter plugin for otp auto fill, used SMS Consent API to provide the otp of a single SMS message to us if the user gives permission. For Android, that's where this package is useful. No need for iOS, using Android's [SMS User Consent API](https://developers.google.com/identity/sms-retriever/user-consent/overview)
 
 ## Screenshots
 
