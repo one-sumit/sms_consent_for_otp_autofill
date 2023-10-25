@@ -65,4 +65,4 @@ As per the [SMS User Consent API](https://developers.google.com/identity/sms-ret
 ## Contributing
 
 * Found a bug or idea to improve the plugin? Send a PR.
-* Want to hire me for a gig? Let's talk on [LinkedIn](https://mdyousufbhuiyan.github.io/yousuf-portfolio/)
+* Want to hire me for a gig? Let's talk on [LinkedIn](https:in/yousufappspecialist)
