@@ -56,18 +56,13 @@ smsUserConsent.dispose();
 
 ### Note
 
-As per the [SMS User Consent API](https://developers.google.com/identity/sms-retriever/user-consent/overview),  message will be received by the plugin only if it meets these criteria:
+As per the [SMS User Consent API](https://developers.google.com/identity/sms-retriever/user-consent/overview),  otp will be received by the plugin only if it meets these criteria:
 
-* The message contains a 4-10 character alphanumeric string with at least one number.
+* The message contains 6-10 numbers.
 * The message was sent by a phone number that's not in the user's contacts.
 * If you specified the sender's phone number, the message was sent by that number.
 
 ## Contributing
 
 * Found a bug or idea to improve the plugin? Send a PR.
-* Found this plugin helpful and want to thank me? I love [:coffee:](https://paypal.me/pharshdev)
-* Want to hire me for a gig? Let's talk on [LinkedIn](https://linkedin.com/in/pharshdev)
-
-## License
-
-MIT © 2020 [Harsh P](https://github.com/pharshdev)
+* Want to hire me for a gig? Let's talk on [LinkedIn](https://mdyousufbhuiyan.github.io/yousuf-portfolio/)
