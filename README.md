@@ -9,12 +9,12 @@ Flutter plugin for otp auto fill, used SMS Consent API to retrieve the otp of a 
   <img src="https://github.com/mdyousufbhuiyan/sms_consent_for_otp_autofill/assets/26599846/4bc3518e-b3fd-41a2-baf3-bdbe73bb0e0d" width="250" /> 
 </p>
 
-## Steps to use
-
-## import 'package:sms_consent_for_otp_autofill/sms_consent_for_otp_autofill.dart';
+### Steps to use
 
 1] Create an instance, **optionally** supply phone number listener and sms listener
-```
+```dart
+import 'package:sms_consent_for_otp_autofill/sms_consent_for_otp_autofill.dart';
+
 SmsUserConsent smsUserConsent = SmsUserConsent(
         // optionally, do something when user selects a number.
         // You can even add/update this listener later on by simply 
