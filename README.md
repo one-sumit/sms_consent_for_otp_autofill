@@ -5,8 +5,7 @@ Request user's phone number (supports dual sim) and/or consent to read SMS witho
 ## Screenshots
 
 <p float="left">
-  <img src="![screen1](https://github.com/mdyousufbhuiyan/sms_consent_for_otp_autofill/assets/26599846/b0893bd6-afce-4a50-be7b-7a744135ccf5)
-" width="250" />
+  <img src="https://github.com/mdyousufbhuiyan/sms_consent_for_otp_autofill/assets/26599846/b0893bd6-afce-4a50-be7b-7a744135ccf5" width="250" />
   <img src="https://raw.githubusercontent.com/pharshdev/sms_user_consent/master/ss1.png" width="250" />
   <img src="https://raw.githubusercontent.com/pharshdev/sms_user_consent/master/ss2.png" width="250" /> 
   <img src="https://raw.githubusercontent.com/pharshdev/sms_user_consent/master/ss3.png" width="250" />
