@@ -34,6 +34,7 @@ SmsConsentForOtpAutofill smsConsentForOtpAutoFill = SmsConsentForOtpAutofill(
 smsConsentForOtpAutoFill.requestPhoneNumber();
 ```
 Once the user selects a phone number, it can be accessed as
+
 ```dart
 smsConsentForOtpAutoFill.selectedPhoneNumber;
 ```
@@ -43,15 +44,18 @@ smsConsentForOtpAutoFill.selectedPhoneNumber;
 smsConsentForOtpAutoFill.requestSms(); 
 ```
 or you can specify the phone number you wish to capture the SMS from
+
 ```dart
 smsConsentForOtpAutoFill.requestSms(senderPhoneNumber: sender_number);
 ```
 Once the user receives a SMS and the user taps **Allow**, it can be accessed as
+
 ```dart
 smsConsentForOtpAutoFill.receivedSms;
 ```
 
 3] Finally, dispose the instance
+
 ```dart
 smsConsentForOtpAutoFill.dispose();
 ```
