@@ -4,26 +4,26 @@ import 'sms_consent_for_otp_autofill_platform_interface.dart';
 
 class SmsConsentForOtpAutofill {
   static const MethodChannel _channel = const MethodChannel('sms_consent_for_otp_autofill');
-  // Function? _phoneNumberListener;
+  Function? _phoneNumberListener;
   Function? _smsListener;
-  // String? _selectedPhoneNumber;
+  String? _selectedPhoneNumber;
   String? _receivedSms;
 
   /// Last selected phone number
-  // String? get selectedPhoneNumber => _selectedPhoneNumber;
+  String? get selectedPhoneNumber => _selectedPhoneNumber;
 
   /// Last received sms
   String? get receivedSms => _receivedSms;
-  SmsConsentForOtpAutofill({Function? smsListener}) {
-    // _phoneNumberListener = phoneNumberListener;
+  SmsConsentForOtpAutofill({Function? phoneNumberListener, Function? smsListener}) {
+    _phoneNumberListener = phoneNumberListener;
     _smsListener = smsListener;
     _channel.setMethodCallHandler((call) async {
       switch (call.method) {
-        // case 'selectedPhoneNumber':
-        //   _selectedPhoneNumber = call.arguments;
-        //  // _phoneNumberListener!();
-        // if(_phoneNumberListener!=null)  _phoneNumberListener!(_selectedPhoneNumber);
-        //   break;
+        case 'selectedPhoneNumber':
+          _selectedPhoneNumber = call.arguments;
+         // _phoneNumberListener!();
+        if(_phoneNumberListener!=null)  _phoneNumberListener!(_selectedPhoneNumber);
+          break;
         case 'receivedSms':
           _receivedSms = call.arguments;
           if(_smsListener!=null)  _smsListener!(_receivedSms);
@@ -36,15 +36,15 @@ class SmsConsentForOtpAutofill {
 
   /// Clears last phone number, sms and their respective listeners.
   void dispose() {
-    // _selectedPhoneNumber = null;
+    _selectedPhoneNumber = null;
     _receivedSms = null;
-    // _phoneNumberListener = null;
+    _phoneNumberListener = null;
     _smsListener = null;
   }
 
   /// Updates Phone number listener
-  // void updatePhoneNumberListener(Function listener) =>
-  //     _phoneNumberListener = listener;
+  void updatePhoneNumberListener(Function listener) =>
+      _phoneNumberListener = listener;
 
   /// Updates Sms listener
   void updateSmsListener(Function listener) => _smsListener = listener;

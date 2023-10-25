@@ -1,6 +1,6 @@
 name: sms_consent_for_otp_autofill
-description: Flutter plugin to provide SMS User Consent API gives the content of a single SMS message to us if the user gives permission. this package will only provide otp instead of full message body.
-version: 1.0.0
+description: Flutter plugin for otp auto fill, used SMS Consent API to retrieve the otp of a single SMS message if the user gives permission. For Android, that's where this package is useful. No need for iOS
+version: 1.0.1
 homepage: https://github.com/mdyousufbhuiyan/sms_consent_for_otp_autofill.git
 
 environment:

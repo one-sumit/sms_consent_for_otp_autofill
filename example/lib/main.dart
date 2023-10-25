@@ -15,16 +15,16 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   late SmsConsentForOtpAutofill smsConsentForOtpAutoFill;
   OtpFieldController otpbox = OtpFieldController();
-  String? _otp;
+  String? phoneNumber;
 
   @override
   void initState() {
     super.initState();
-    smsConsentForOtpAutoFill = SmsConsentForOtpAutofill(
-        //         phoneNumberListener: (number) {
-        //   print("number...................${number}");
-        // },
-        smsListener: (otpcode) {
+    smsConsentForOtpAutoFill =
+        SmsConsentForOtpAutofill(phoneNumberListener: (number) {
+      phoneNumber = number;
+      print("number...................${number}");
+    }, smsListener: (otpcode) {
       print("otp...................${otpcode}");
       setState(() {
         this.startListen = false;
@@ -32,7 +32,6 @@ class _MyAppState extends State<MyApp> {
       setState(() {
         //prase code from the OTP sms
         otpbox.set(otpcode.split(""));
-        _otp = otpcode;
       });
     });
   }
@@ -52,71 +51,84 @@ class _MyAppState extends State<MyApp> {
         appBar: AppBar(
           title: const Text('SMS consent For Otp AutoFill'),
         ),
-        body: Container(
-          child: Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisSize: MainAxisSize.max,
-              children: <Widget>[
-                const Center(
-                  child: Text(
-                    "Enter OTP Code",
-                    style: TextStyle(fontSize: 20),
+        body: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisSize: MainAxisSize.max,
+            children: <Widget>[
+              const Center(
+                child: Text(
+                  "Enter OTP Code",
+                  style: TextStyle(fontSize: 20),
+                ),
+              ),
+              const Padding(padding: EdgeInsets.all(20)),
+              OTPTextField(
+                controller: otpbox,
+                length: 6,
+                width: double.infinity,
+                fieldWidth: 50,
+                style: const TextStyle(fontSize: 17),
+                textFieldAlignment: MainAxisAlignment.spaceAround,
+                fieldStyle: FieldStyle.box,
+                onCompleted: (pin) {
+                  print("Entered OTP Code: $pin");
+                },
+              ),
+              const SizedBox(
+                height: 30,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  MaterialButton(
+                    color: Colors.red,
+                    textColor: Colors.white,
+                    child: Text(
+                        startListen == false ? 'Stopped' : 'Stop Listening'),
+                    onPressed: () async {
+                      smsConsentForOtpAutoFill.dispose();
+                      setState(() {
+                        this.startListen = false;
+                      });
+                      print("Stop Listening.........");
+                    },
                   ),
-                ),
-                Padding(padding: const EdgeInsets.all(20)),
-                OTPTextField(
-                  controller: otpbox,
-                  length: 6,
-                  width: double.infinity,
-                  fieldWidth: 50,
-                  style: const TextStyle(fontSize: 17),
-                  textFieldAlignment: MainAxisAlignment.spaceAround,
-                  fieldStyle: FieldStyle.box,
-                  onCompleted: (pin) {
-                    print("Entered OTP Code: $pin");
-                  },
-                ),
-                SizedBox(
-                  height: 30,
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    MaterialButton(
-                      color: Colors.red,
-                      textColor: Colors.white,
-                      child: Text(
-                          startListen == false ? 'Stopped' : 'Stop Listening'),
-                      onPressed: () async {
-                        smsConsentForOtpAutoFill.dispose();
-                        setState(() {
-                          this.startListen = false;
-                        });
-                        print("Stop Listening.........");
-                      },
-                    ),
-                    SizedBox(
-                      width: 20,
-                    ),
-                    MaterialButton(
-                      color: Colors.green,
-                      textColor: Colors.white,
-                      child: Text(startListen ? 'Started' : 'Start Listening'),
-                      onPressed: () async {
-                        smsConsentForOtpAutoFill.requestSms();
-                        setState(() {
-                          this.startListen = true;
-                        });
-                        print("Start Listening.........");
-                      },
-                    ),
-                  ],
-                ),
-                Text(_otp ?? ""),
-              ],
-            ),
+                  const SizedBox(
+                    width: 20,
+                  ),
+                  MaterialButton(
+                    color: Colors.green,
+                    textColor: Colors.white,
+                    child: Text(startListen ? 'Started' : 'Start Listening'),
+                    onPressed: () async {
+                      smsConsentForOtpAutoFill.requestSms();
+                      setState(() {
+                        this.startListen = true;
+                      });
+                      print("Start Listening.........");
+                    },
+                  ),
+                ],
+              ),
+              // const SizedBox(
+              //   width: 20,
+              // ),
+              // MaterialButton(
+              //   color: Colors.green,
+              //   textColor: Colors.white,
+              //   child: const Text("Select phone number"),
+              //   onPressed: () async {
+              //     smsConsentForOtpAutoFill.requestPhoneNumber();
+              //     print("Start  Listening.........");
+              //   },
+              // ),
+              // const SizedBox(
+              //   width: 10,
+              // ),
+             //  Text("Selected Number  $phoneNumber"),
+            ],
           ),
         ),
       ),
