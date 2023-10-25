@@ -1,5 +1,5 @@
 # sms_consent_for_otp_autofill
-Flutter plugin for otp auto fill, used SMS Consent API to provide the otp of a single SMS message to us if the user gives permission. For Android, that's where this package is useful. No need for iOS, using Android's [SMS User Consent API](https://developers.google.com/identity/sms-retriever/user-consent/overview)
+Flutter plugin for otp auto fill, used SMS Consent API to retrieve the otp of a single SMS message if the user gives permission. For Android, that's where this package is useful. No need for iOS, using Android's [SMS User Consent API](https://developers.google.com/identity/sms-retriever/user-consent/overview)
 
 ## Screenshots
 
@@ -17,12 +17,12 @@ SmsUserConsent smsUserConsent = SmsUserConsent(
         // optionally, do something when user selects a number.
         // You can even add/update this listener later on by simply 
         // calling smsUserConsent.updatePhoneNumberListener(updatedListener)
-        phoneNumberListener: () {},
+        phoneNumberListener: (number) {},
         
         // optionally, do something when user receives sms.
         // You can even add/update this listener later on by simply 
         // calling smsUserConsent.updateSmsListener(updatedListener)
-        smsListener: () {}
+        smsListener: (otpcode) {}
 );
 ```
 
