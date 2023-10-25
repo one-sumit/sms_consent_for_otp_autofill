@@ -20,10 +20,11 @@ class _MyAppState extends State<MyApp> {
   @override
   void initState() {
     super.initState();
-    smsConsentForOtpAutoFill =
-        SmsConsentForOtpAutofill(phoneNumberListener: (number) {
-      print("number...................${number}");
-    }, smsListener: (otpcode) {
+    smsConsentForOtpAutoFill = SmsConsentForOtpAutofill(
+        //         phoneNumberListener: (number) {
+        //   print("number...................${number}");
+        // },
+        smsListener: (otpcode) {
       print("otp...................${otpcode}");
       setState(() {
         this.startListen = false;
@@ -41,6 +42,7 @@ class _MyAppState extends State<MyApp> {
     smsConsentForOtpAutoFill.dispose();
     super.dispose();
   }
+
   bool startListen = false;
 
   @override
@@ -57,36 +59,36 @@ class _MyAppState extends State<MyApp> {
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisSize: MainAxisSize.max,
               children: <Widget>[
-
                 const Center(
-                  child: Text("Enter OTP Code", style: TextStyle(fontSize: 20),),
+                  child: Text(
+                    "Enter OTP Code",
+                    style: TextStyle(fontSize: 20),
+                  ),
                 ),
-
                 Padding(padding: const EdgeInsets.all(20)),
-
                 OTPTextField(
                   controller: otpbox,
                   length: 6,
                   width: double.infinity,
                   fieldWidth: 50,
-                  style: const TextStyle(
-                      fontSize: 17
-                  ),
+                  style: const TextStyle(fontSize: 17),
                   textFieldAlignment: MainAxisAlignment.spaceAround,
                   fieldStyle: FieldStyle.box,
                   onCompleted: (pin) {
                     print("Entered OTP Code: $pin");
                   },
                 ),
-
-                SizedBox(height: 30,),
+                SizedBox(
+                  height: 30,
+                ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     MaterialButton(
                       color: Colors.red,
                       textColor: Colors.white,
-                      child: Text(startListen==false ? 'Stopped' : 'Stop Listening'),
+                      child: Text(
+                          startListen == false ? 'Stopped' : 'Stop Listening'),
                       onPressed: () async {
                         smsConsentForOtpAutoFill.dispose();
                         setState(() {
@@ -95,7 +97,9 @@ class _MyAppState extends State<MyApp> {
                         print("Stop Listening.........");
                       },
                     ),
-                    SizedBox(width: 20,),
+                    SizedBox(
+                      width: 20,
+                    ),
                     MaterialButton(
                       color: Colors.green,
                       textColor: Colors.white,
@@ -110,9 +114,6 @@ class _MyAppState extends State<MyApp> {
                     ),
                   ],
                 ),
-
-
-
                 Text(_otp ?? ""),
               ],
             ),
