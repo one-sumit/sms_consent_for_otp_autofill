@@ -18,6 +18,7 @@ import io.flutter.plugin.common.MethodChannel
 import io.flutter.plugin.common.MethodChannel.MethodCallHandler
 import io.flutter.plugin.common.MethodChannel.Result
 import java.util.regex.Pattern
+import android.content.ComponentName
 
 /** SmsConsentForOtpAutofillPlugin */
 class SmsConsentForOtpAutofillPlugin: FlutterPlugin, MethodCallHandler, ActivityAware {
@@ -111,7 +112,20 @@ class SmsConsentForOtpAutofillPlugin: FlutterPlugin, MethodCallHandler, Activity
             try {
               // Start activity to show consent dialog to user, activity must be started in
               // 5 minutes, otherwise you'll receive another TIMEOUT intent
-              mActivity.startActivityForResult(extras.getParcelable(SmsRetriever.EXTRA_CONSENT_INTENT), SMS_CONSENT_REQUEST)
+              val consentIntent: Intent = extras.getParcelable(SmsRetriever.EXTRA_CONSENT_INTENT)
+                ?: //handle error
+                return
+              val flags: Int = consentIntent.getFlags()
+              val name: ComponentName = consentIntent.resolveActivity(mActivity.packageManager)
+
+              if (name !=null && name.packageName == "com.google.android.gms"
+                && name.className == "com.google.android.gms.auth.api.phone.ui.UserConsentPromptActivity"
+                && (flags and  Intent.FLAG_GRANT_READ_URI_PERMISSION == 0)
+                && (flags and  Intent.FLAG_GRANT_WRITE_URI_PERMISSION == 0)
+              ) {
+                // Redirect the nested intent.
+                mActivity.startActivityForResult(consentIntent, SMS_CONSENT_REQUEST)
+              }
             } catch (e: ActivityNotFoundException) {
               // Handle the exception ...
             }
