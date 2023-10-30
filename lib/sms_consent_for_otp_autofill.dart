@@ -1,9 +1,7 @@
 import 'package:flutter/services.dart';
-import 'sms_consent_for_otp_autofill_platform_interface.dart';
-
 
 class SmsConsentForOtpAutofill {
-  static const MethodChannel _channel = const MethodChannel('sms_consent_for_otp_autofill');
+  static const MethodChannel _channel = MethodChannel('sms_consent_for_otp_autofill');
   Function? _phoneNumberListener;
   Function? _smsListener;
   String? _selectedPhoneNumber;
@@ -14,19 +12,23 @@ class SmsConsentForOtpAutofill {
 
   /// Last received sms
   String? get receivedSms => _receivedSms;
-  SmsConsentForOtpAutofill({Function? phoneNumberListener, Function? smsListener}) {
+
+  SmsConsentForOtpAutofill(
+      {Function? phoneNumberListener, Function? smsListener}) {
     _phoneNumberListener = phoneNumberListener;
     _smsListener = smsListener;
     _channel.setMethodCallHandler((call) async {
       switch (call.method) {
         case 'selectedPhoneNumber':
           _selectedPhoneNumber = call.arguments;
-         // _phoneNumberListener!();
-        if(_phoneNumberListener!=null)  _phoneNumberListener!(_selectedPhoneNumber);
+          // _phoneNumberListener!();
+          if (_phoneNumberListener != null) {
+            _phoneNumberListener!(_selectedPhoneNumber);
+          }
           break;
         case 'receivedSms':
           _receivedSms = call.arguments;
-          if(_smsListener!=null)  _smsListener!(_receivedSms);
+          if (_smsListener != null) _smsListener!(_receivedSms);
           //_smsListener!();
           break;
         default:
@@ -71,6 +73,3 @@ class SmsConsentForOtpAutofill {
 //     return SmsConsentForOtpAutofillPlatform.instance.getPlatformVersion();
 //   }
 // }
-
-
-

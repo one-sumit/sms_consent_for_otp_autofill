@@ -9,3 +9,7 @@ Fixed some issues
 ## 1.0.2
 
 Fixed Intent Redirection Policy Violation
+
+## 1.0.3
+
+removed some unnecessary code and make it more readable
