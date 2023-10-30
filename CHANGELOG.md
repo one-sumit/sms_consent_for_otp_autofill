@@ -13,3 +13,7 @@ Fixed Intent Redirection Policy Violation
 ## 1.0.3
 
 removed some unnecessary code and make it more readable
+
+## 1.0.4
+
+fixed dart formatting

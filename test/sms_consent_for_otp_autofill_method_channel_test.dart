@@ -3,7 +3,8 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:sms_consent_for_otp_autofill/sms_consent_for_otp_autofill_method_channel.dart';
 
 void main() {
-  MethodChannelSmsConsentForOtpAutofill platform = MethodChannelSmsConsentForOtpAutofill();
+  MethodChannelSmsConsentForOtpAutofill platform =
+      MethodChannelSmsConsentForOtpAutofill();
   const MethodChannel channel = MethodChannel('sms_consent_for_otp_autofill');
 
   TestWidgetsFlutterBinding.ensureInitialized();

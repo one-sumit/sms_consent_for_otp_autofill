@@ -8,13 +8,14 @@ abstract class SmsConsentForOtpAutofillPlatform extends PlatformInterface {
 
   static final Object _token = Object();
 
-  static SmsConsentForOtpAutofillPlatform _instance = MethodChannelSmsConsentForOtpAutofill();
+  static SmsConsentForOtpAutofillPlatform _instance =
+      MethodChannelSmsConsentForOtpAutofill();
 
   /// The default instance of [SmsConsentForOtpAutofillPlatform] to use.
   ///
   /// Defaults to [MethodChannelSmsConsentForOtpAutofill].
   static SmsConsentForOtpAutofillPlatform get instance => _instance;
-  
+
   /// Platform-specific implementations should set this with their own
   /// platform-specific class that extends [SmsConsentForOtpAutofillPlatform] when
   /// they register themselves.

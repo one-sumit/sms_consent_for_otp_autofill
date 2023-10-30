@@ -1,7 +1,8 @@
 import 'package:flutter/services.dart';
 
 class SmsConsentForOtpAutofill {
-  static const MethodChannel _channel = MethodChannel('sms_consent_for_otp_autofill');
+  static const MethodChannel _channel =
+      MethodChannel('sms_consent_for_otp_autofill');
   Function? _phoneNumberListener;
   Function? _smsListener;
   String? _selectedPhoneNumber;
