@@ -19,6 +19,7 @@ import io.flutter.plugin.common.MethodChannel.MethodCallHandler
 import io.flutter.plugin.common.MethodChannel.Result
 import java.util.regex.Pattern
 import android.content.ComponentName
+import android.os.Build
 
 /** SmsConsentForOtpAutofillPlugin */
 class SmsConsentForOtpAutofillPlugin: FlutterPlugin, MethodCallHandler, ActivityAware {
@@ -44,13 +45,6 @@ class SmsConsentForOtpAutofillPlugin: FlutterPlugin, MethodCallHandler, Activity
       "requestSms" -> {
         SmsRetriever.getClient(mActivity.applicationContext).startSmsUserConsent(call.argument<String>("senderPhoneNumber"))
 
-        mActivity.registerReceiver(smsVerificationReceiver, IntentFilter(SmsRetriever.SMS_RETRIEVED_ACTION))
-        result.success(null)
-
-        SmsRetriever.getClient(mActivity.applicationContext).startSmsUserConsent(call.argument<String>("senderPhoneNumber"))
-
-        //mActivity.registerReceiver(smsVerificationReceiver, IntentFilter(SmsRetriever.SMS_RETRIEVED_ACTION))
-        // mActivity.registerReceiver(smsVerificationReceiver, IntentFilter(SmsRetriever.SMS_RETRIEVED_ACTION))
         val filter = IntentFilter(SmsRetriever.SMS_RETRIEVED_ACTION)
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
           mActivity.registerReceiver(smsVerificationReceiver, filter, Context.RECEIVER_EXPORTED)
@@ -58,8 +52,6 @@ class SmsConsentForOtpAutofillPlugin: FlutterPlugin, MethodCallHandler, Activity
           mActivity.registerReceiver(smsVerificationReceiver, filter)
         }
         result.success(null)
-
-
       }
     }
   }
